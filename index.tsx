@@ -740,8 +740,9 @@ const vocabularyData = [
         { english: "winter", vietnamese: "mùa đông", englishExample: "Winter is cold.", vietnameseExample: "Mùa đông lạnh." },
         { english: "birthday", vietnamese: "sinh nhật", englishExample: "My birthday is in May.", vietnameseExample: "Sinh nhật của tôi vào tháng Năm." },
         { english: "holiday", vietnamese: "ngày nghỉ", englishExample: "We have a holiday on Sunday.", vietnameseExample: "Chúng tôi có ngày nghỉ vào Chủ nhật." },
-        { english: "calendar", vietnamese: "lịch", englishExample: "Look at the calendar on the wall.", vietnameseExample: "Nhìn lịch treo tường đi." }
-      ]
+        { english: "calendar", vietnamese: "lịch", englishExample: "Look at the calendar on the wall.", vietnameseExample: "Nhìn lịch treo tường đi." },
+        { english: "schedule", vietnamese: "thời khóa biểu", englishExample: "This is our class schedule.", vietnameseExample: "Đây là thời khóa biểu của chúng tôi." }
+    ]
   }
 ];
 
@@ -1099,7 +1100,8 @@ const Game = ({ topic, onReturnToMenu, onNextTopic, onStartPractice }) => {
           : ( gameStage === 'word'
               ? React.createElement(React.Fragment, null,
                   React.createElement("p", { className: "text-4xl md:text-5xl font-semibold text-gray-900 mb-2" }, currentWord.vietnamese),
-                  currentWord.vietnameseExample && React.createElement("p", { className: "text-xl text-gray-500 mt-2 italic" }, `"${currentWord.vietnameseExample}"`)
+// FIX: Changed conditional rendering from && to a ternary operator to improve TypeScript type inference and resolve a potential overload error.
+                  currentWord.vietnameseExample ? React.createElement("p", { className: "text-xl text-gray-500 mt-2 italic" }, `"${currentWord.vietnameseExample}"`) : null
                 )
               : React.createElement(React.Fragment, null,
                   React.createElement("p", { className: "text-2xl font-semibold text-gray-800 mb-2" }, "Listen and type the sentence:"),
@@ -1138,7 +1140,6 @@ const Game = ({ topic, onReturnToMenu, onNextTopic, onStartPractice }) => {
             React.createElement("p", { className: "text-sky-700 font-mono whitespace-nowrap" }, gameStage === 'word' ? currentWord.english : currentWord.englishExample)
           )
         ),
-// FIX: Rewrote this `React.createElement` call to correct a subtle structural issue that was confusing the TypeScript compiler.
         feedback &&
           React.createElement(
             "div",
@@ -1154,12 +1155,14 @@ const Game = ({ topic, onReturnToMenu, onNextTopic, onStartPractice }) => {
               },
               feedback.message
             ),
-            feedback.example &&
-              React.createElement(
-                "p",
-                { className: "text-lg text-gray-500 mt-1 italic" },
-                `e.g., "${feedback.example}"`
-              )
+// FIX: Changed conditional rendering from && to a ternary operator to improve TypeScript type inference and resolve a potential overload error.
+            feedback.example
+              ? React.createElement(
+                  "p",
+                  { className: "text-lg text-gray-500 mt-1 italic" },
+                  `e.g., "${feedback.example}"`
+                )
+              : null
           )
       )
     ),
