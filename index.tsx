@@ -740,9 +740,8 @@ const vocabularyData = [
         { english: "winter", vietnamese: "mùa đông", englishExample: "Winter is cold.", vietnameseExample: "Mùa đông lạnh." },
         { english: "birthday", vietnamese: "sinh nhật", englishExample: "My birthday is in May.", vietnameseExample: "Sinh nhật của tôi vào tháng Năm." },
         { english: "holiday", vietnamese: "ngày nghỉ", englishExample: "We have a holiday on Sunday.", vietnameseExample: "Chúng tôi có ngày nghỉ vào Chủ nhật." },
-        { english: "calendar", vietnamese: "lịch", englishExample: "Look at the calendar on the wall.", vietnameseExample: "Nhìn lịch treo tường đi." },
-        { english: "schedule", vietnamese: "thời khóa biểu", englishExample: "This is our class schedule.", vietnameseExample: "Đây là thời khóa biểu của chúng tôi." }
-    ]
+        { english: "calendar", vietnamese: "lịch", englishExample: "Look at the calendar on the wall.", vietnameseExample: "Nhìn lịch treo tường đi." }
+      ]
   }
 ];
 
